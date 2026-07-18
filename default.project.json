@@ -1,0 +1,12 @@
+{
+    "name": "DolceGUI",
+    "tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+            "CyberGUI": {
+                "$path": "src"
+            }
+        }
+    }
+}
