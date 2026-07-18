@@ -1,47 +1,26 @@
--- CyberGUI - Main Entry Point
--- This is the file loaded by loadstring()
--- Equivalent to Fluent's main.lua
-
 local CyberGUI = {}
 CyberGUI.__index = CyberGUI
 
--- ============================================================
--- SERVICES
--- ============================================================
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 
--- ============================================================
--- DEPENDENCIES
--- ============================================================
 local Creator = require(script.Creator)
 local Themes = require(script.Themes)
 local Elements = require(script.Elements)
 local Components = require(script.Components)
 local Icons = require(script.Icons)
 
--- ============================================================
--- CONSTANTS
--- ============================================================
 local GUI_NAME = "CyberGUI"
 local VERSION = "1.0.0"
 
--- ============================================================
--- STATE
--- ============================================================
 local CurrentTheme = "Dark"
 local ScreenGui = nil
 local Library = {}
 local ElementsTable = {}
 local Notifications = {}
 local Windows = {}
-
--- ============================================================
--- UTILITY FUNCTIONS
--- ============================================================
-
 -- Get icon by name
 function CyberGUI.GetIcon(Name)
     return Icons[Name] or "❓"
@@ -69,10 +48,6 @@ end
 function CyberGUI:GetVersion()
     return VERSION
 end
-
--- ============================================================
--- SCREENGUI MANAGEMENT
--- ============================================================
 
 local function SetupScreenGui()
     if ScreenGui then
@@ -103,10 +78,6 @@ function CyberGUI:GetScreenGui()
     end
     return ScreenGui
 end
-
--- ============================================================
--- WINDOW CREATION
--- ============================================================
 
 function CyberGUI:CreateWindow(Config)
     assert(Config and Config.Title, "CyberGUI:CreateWindow - Missing Title")
@@ -213,10 +184,6 @@ function CyberGUI:CreateWindow(Config)
     return Window
 end
 
--- ============================================================
--- ELEMENT CREATION
--- ============================================================
-
 function CyberGUI:CreateElement(Type, Container, Config)
     local ElementModule = ElementsTable[Type]
     if not ElementModule then
@@ -235,10 +202,6 @@ for _, ElementModule in ipairs(Elements) do
         ElementsTable[ElementType] = ElementModule
     end
 end
-
--- ============================================================
--- THEME MANAGEMENT
--- ============================================================
 
 function CyberGUI:SetTheme(ThemeName)
     assert(Themes[ThemeName], "CyberGUI:SetTheme - Theme not found: " .. ThemeName)
@@ -266,10 +229,6 @@ function CyberGUI:ToggleTheme()
     self:SetTheme(NewTheme)
     return NewTheme
 end
-
--- ============================================================
--- NOTIFICATION SYSTEM
--- ============================================================
 
 function CyberGUI:Notify(Config)
     Config = Config or {}
@@ -374,10 +333,6 @@ function CyberGUI:Notify(Config)
     return Notification
 end
 
--- ============================================================
--- UTILITY: GET ALL WINDOWS
--- ============================================================
-
 function CyberGUI:GetWindows()
     return Windows
 end
@@ -397,10 +352,6 @@ function CyberGUI:CloseAllWindows()
     end
     Windows = {}
 end
-
--- ============================================================
--- UTILITY: CREATE CONFIRMATION DIALOG
--- ============================================================
 
 function CyberGUI:Confirm(Config)
     Config = Config or {}
