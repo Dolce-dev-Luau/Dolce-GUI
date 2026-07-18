@@ -1,7 +1,4 @@
--- Dolce Ui Example Usage
--- Run this script in Roblox to see the UI in action
-
-local CyberGUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/yourusername/CyberGUI/main/build/main.lua"))()
+local CyberGUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Dolce-dev-Luau/Cyber-GUI/refs/heads/main/src/init.lua"))()
 
 -- Create window
 local Window = CyberGUI:CreateWindow({
